@@ -1,25 +1,49 @@
 * {
   padding: 0%;
   margin: 0%;
+  font-family: "NewRodinProM";
+}
+
+.main>h1 {
+  text-align: center;
+  font-size: 6rem;
+}
+
+.main-wrapper {
+  display: flex;
+}
+
+.spaces {
+  flex-basis: 300px;
+}
+
+.space-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.space {
+  border: 2px blue solid;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.space>li {
+  display: inline;
 }
 
 .todo-wrapper {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 
 .todo-last {
-  background-color: blanchedalmond;
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-  width: 15%;
+  border: 2px red solid;
+  display: flex;
 }
 
-.todo-data {
-  background-color: antiquewhite;
-  border: 2px solid rgb(230, 187, 132);
-  border-radius: 5px;
+.todo-last>.todo-remove {
+  height: 2rem;
+  font-size: 0.5rem;
 }

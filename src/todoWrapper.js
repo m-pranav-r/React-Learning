@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { spacesInit } from './data/spacesInit';
+import { useState, useRef, useEffect } from 'react';
+import { todosInit } from './data/initData.js';
 import Todo from './todo.js';
 
 function dragstart_handler() {
@@ -10,14 +10,17 @@ function dragend_handler() {
 
 }
 
-export default function TodoWrapper() {
-    const [todos, setTodos] = useState(spacesInit);
+export default function TodoWrapper({ currentSpace }) {
+    const [todos, setTodos] = useState(todosInit);
     const [isNewTodo, setNewTodo] = useState(false);
     const dataRef = useRef(null);
     const importanceRef = useRef(null);
+    useEffect(() => {
+        localStorage.setItem("todo_data", todos);
+    }, [todos]);
     return (
         <div className='todo-wrapper'>
-            {todos.map(todo => {
+            {todos.filter(todo => todo.space == currentSpace).sort((a, b) => a.importance < b.importance).map(todo => {
                 return (
                     <div className='todo-last'>
                         < Todo {...todo} />
@@ -47,7 +50,8 @@ export default function TodoWrapper() {
                                             key: Math.random() * 1000,
                                             data: dataRef.current.value,
                                             importance: importanceRef.current.value,
-                                            status: "0"
+                                            status: "0",
+                                            space: currentSpace
                                         }
                                     ]);
                                 }
